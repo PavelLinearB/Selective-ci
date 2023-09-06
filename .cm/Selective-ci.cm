@@ -21,6 +21,26 @@ automations:
           check_name: "UI Tests"
           conclusion: skipped
 
+automations:
+  ui_test_dispatch:
+    if:
+      - {{ has.be_code_changes }} 
+    run:
+      - action: run-github-workflow@v1
+        args:
+          workflow: be-tests
+          check_name: "BE Tests"
+
+  # Skip UI checks if the PR doesn't have a UI code changes
+  skip_ui_check:
+    if:
+      - {{ not has.be_code_changes }} 
+    run:
+      - action: add-github-check@v1
+        args:
+          check_name: "BE Tests"
+          conclusion: skipped
+
 has:
   deleted_files: {{ source.diff.files | map(attr='new_file') | match(term='/dev/null') | some }}
   fe_code_changes: {{ files | match(regex=r/frontend\//) | some }}
