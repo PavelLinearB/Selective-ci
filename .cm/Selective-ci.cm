@@ -2,7 +2,7 @@ on:
   - commit
 
 automations:
-  run_workflow_dispatch:
+  ui_test_dispatch:
     if:
       - {{ has.fe_code_changes }} 
     run:
@@ -14,7 +14,7 @@ automations:
   # Skip UI checks if the PR doesn't have a UI code changes
   skip_ui_check:
     if:
-      - {{ not has.ui_code_changes }} 
+      - {{ not has.fe_code_changes }} 
     run:
       - action: add-github-check@v1
         args:
