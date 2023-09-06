@@ -1,0 +1,28 @@
+on: 
+  - commit
+
+automations:
+  run_workflow_dispatch:
+    if:
+      - {{ has.fe_code_changes }} 
+    run:
+      - action: run-github-workflow@v1
+        args:
+          workflow: fe-tests
+          inputs: "{ name: {{pr.author}} }"
+          check_name: "UI Tests"
+
+  # Skip UI checks if the PR doesn't have a UI code changes
+  skip_ui_check:
+    if:
+      - {{ not has.ui_code_changes }} 
+    run:
+      - action: add-github-check@v1
+        args:
+          check_name: "UI Tests"
+          conclusion: skipped
+
+has:
+  deleted_files: {{ source.diff.files | map(attr='new_file') | match(term='/dev/null') | some }}
+  fe_code_changes: {{ files | match(regex=r/frontend\//) | some }}
+  be_code_changes: {{ files | match(regex=r/backend\//) | some }}
