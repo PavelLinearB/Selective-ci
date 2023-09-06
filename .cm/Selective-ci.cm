@@ -21,8 +21,7 @@ automations:
           check_name: "UI Tests"
           conclusion: skipped
 
-automations:
-  ui_test_dispatch:
+  be_test_dispatch:
     if:
       - {{ has.be_code_changes }} 
     run:
@@ -31,8 +30,8 @@ automations:
           workflow: .github/workflows/backend-manual.yml
           check_name: "BE Tests"
 
-  # Skip UI checks if the PR doesn't have a UI code changes
-  skip_ui_check:
+  # Skip BE checks if the PR doesn't have a UI code changes
+  skip_be_check:
     if:
       - {{ not has.be_code_changes }} 
     run:
