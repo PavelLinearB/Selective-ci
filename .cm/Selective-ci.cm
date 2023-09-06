@@ -8,7 +8,7 @@ automations:
     run:
       - action: run-github-workflow@v1
         args:
-          workflow: fe-tests
+          workflow: .github/workflows/frontend-manual.yml
           check_name: "UI Tests"
 
   # Skip UI checks if the PR doesn't have a UI code changes
@@ -28,7 +28,7 @@ automations:
     run:
       - action: run-github-workflow@v1
         args:
-          workflow: be-tests
+          workflow: .github/workflows/backend-manual.yml
           check_name: "BE Tests"
 
   # Skip UI checks if the PR doesn't have a UI code changes
