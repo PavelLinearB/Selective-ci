@@ -9,7 +9,6 @@ automations:
       - action: run-github-workflow@v1
         args:
           workflow: fe-tests
-          inputs: "{ name: {{pr.author}} }"
           check_name: "UI Tests"
 
   # Skip UI checks if the PR doesn't have a UI code changes
