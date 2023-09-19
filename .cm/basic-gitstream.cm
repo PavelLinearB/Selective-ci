@@ -5,6 +5,7 @@ manifest:
   version: 1.0
 on:
   - commit
+  - pr_created
   - comment_added
 
 automations:
