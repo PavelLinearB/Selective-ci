@@ -26,7 +26,7 @@ automations:
       - action: send-slack-message@v1
         args:
           message: "Hello world :tada:. \n etr: {{ calc.etr }}"
-          webhook_url: "https://hooks.slack.com/services/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"
+          webhook_url: "{{ slack }}"
 
 # The next function calculates the estimated time to review and makes it available in the automation above.
 calc:
