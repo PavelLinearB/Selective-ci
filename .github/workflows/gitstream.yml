@@ -35,10 +35,10 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     name: gitStream workflow automation
-    env:
-      SLACK_TOKEN: "{{ secrets.SLACK_TOKEN }}"
     steps:
       - name: Evaluate Rules
+        env:
+          SLACK_TOKEN: "{{ secrets.SLACK_TOKEN }}"
         uses: linear-b/gitstream-github-action@v1
         id: rules-engine
         with:
