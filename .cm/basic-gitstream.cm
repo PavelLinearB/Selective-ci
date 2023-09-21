@@ -25,7 +25,7 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ changes_summary }}
+          comment: lala \n {{ changes_summary }}
       - action: send-slack-message@v1
         args:
           # comment: "Hello world. {{ slack }}. bye."
