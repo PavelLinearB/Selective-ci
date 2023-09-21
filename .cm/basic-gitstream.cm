@@ -25,11 +25,11 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ multiline_comment }}
+          comment: {{ changes_summary }}
       - action: send-slack-message@v1
         args:
           # comment: "Hello world. {{ slack }}. bye."
-          message: "Hello world :tada:. \n etr: {{ calc.etr }}. {{ multiline_comment }}"
+          message: "Hello world :tada:. \n etr: {{ calc.etr }}. {{ changes_summary }}"
           webhook_url: "{{ slack }}"
 
 # The next function calculates the estimated time to review and makes it available in the automation above.
@@ -40,3 +40,17 @@ multiline_comment: |
   
   line 1 
   line 2
+
+changes_summary: |
+  All changes by platform
+  {% for platform in changes %}
+  Platform {{ platform.name }} - {{ platform.count }} files.
+  {% endfor %}
+
+changes:
+  - name: lala
+    count: 2
+  - name: kaka
+    count: 3
+  - name: jaja
+    count: 4
