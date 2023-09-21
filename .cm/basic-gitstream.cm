@@ -41,7 +41,7 @@ multiline_comment: |
   line 1 
   line 2
 
-changes_summary: |
+changes_summary: 
   All changes by platform
   {% for platform in changes %}
   Platform {{ platform.name }} - {{ platform.count }} files.
