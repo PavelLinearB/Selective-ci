@@ -37,5 +37,6 @@ calc:
   etr: {{ branch | estimatedReviewTime }}
 slack: {{ env.SLACK_TOKEN }}
 multiline_comment: |
-  line 1 |
+  
+  line 1 
   line 2
