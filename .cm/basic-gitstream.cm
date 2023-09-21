@@ -23,13 +23,19 @@ automations:
     if:
       - true
     run:
+      - action: add-comment@v1
+        args:
+          comment: {{ multiline_comment }}
       - action: send-slack-message@v1
         args:
           # comment: "Hello world. {{ slack }}. bye."
-          message: "Hello world :tada:. \n etr: {{ calc.etr }}"
+          message: "Hello world :tada:. \n etr: {{ calc.etr }}. {{ multiline_comment }}"
           webhook_url: "{{ slack }}"
 
 # The next function calculates the estimated time to review and makes it available in the automation above.
 calc:
   etr: {{ branch | estimatedReviewTime }}
 slack: {{ env.SLACK_TOKEN }}
+multiline_comment: 
+  line 1
+  line 2
