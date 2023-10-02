@@ -9,6 +9,16 @@ on:
   - comment_added
 
 automations:
+
+  # comment
+  comment_ticks:
+    if: 
+      - {{ pr.comments | length > 0 }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: {{ pr.comments[0] }}
+    
   # Add a label that indicates how many minutes it will take to review the PR.
   estimated_time_to_review: 
     if:
