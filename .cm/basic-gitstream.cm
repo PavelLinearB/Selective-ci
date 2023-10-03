@@ -42,6 +42,19 @@ automations:
           message: "Hello world :tada:. \n etr: {{ calc.etr }}. {{ changes_summary }}"
           webhook_url: "{{ slack }}"
 
+  summary_table:
+    if:
+      - {{ true }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: | 
+            {{ double }}
+
+double: |
+  'heres one line'
+  'and the next'
+
 # The next function calculates the estimated time to review and makes it available in the automation above.
 calc:
   etr: {{ branch | estimatedReviewTime }}
