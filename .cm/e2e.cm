@@ -1,0 +1,12 @@
+on: 
+  - comment_added
+
+automations:
+  E2E_tests:
+    if:
+      - {{ pr.comments | match(attr='content', term='/e2e') | some }} 
+    run:
+      - action: run-github-workflow@v1
+        args:
+          workflow: .github/workflows/e2e.yml
+          check_name: "E2E Tests"
